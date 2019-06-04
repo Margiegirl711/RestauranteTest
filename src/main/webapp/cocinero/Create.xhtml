@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCocineroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCocineroLabel_idcocinero}" for="idcocinero" />
+                    <h:inputText id="idcocinero" value="#{cocineroController.selected.idcocinero}" title="#{bundle.CreateCocineroTitle_idcocinero}" required="true" requiredMessage="#{bundle.CreateCocineroRequiredMessage_idcocinero}"/>
+                    <h:outputLabel value="#{bundle.CreateCocineroLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{cocineroController.selected.nombre}" title="#{bundle.CreateCocineroTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateCocineroLabel_apellido1}" for="apellido1" />
+                    <h:inputText id="apellido1" value="#{cocineroController.selected.apellido1}" title="#{bundle.CreateCocineroTitle_apellido1}" />
+                    <h:outputLabel value="#{bundle.CreateCocineroLabel_column2}" for="column2" />
+                    <h:inputText id="column2" value="#{cocineroController.selected.column2}" title="#{bundle.CreateCocineroTitle_column2}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cocineroController.create}" value="#{bundle.CreateCocineroSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{cocineroController.prepareList}" value="#{bundle.CreateCocineroShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCocineroIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

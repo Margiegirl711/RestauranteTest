@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSumaclienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSumaclienteEmpty}" rendered="#{sumaclienteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{sumaclienteController.items.rowCount > 0}">
+                    <h:outputText value="#{sumaclienteController.pagination.pageFirstItem + 1}..#{sumaclienteController.pagination.pageLastItem + 1}/#{sumaclienteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{sumaclienteController.previous}" value="#{bundle.Previous} #{sumaclienteController.pagination.pageSize}" rendered="#{sumaclienteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{sumaclienteController.next}" value="#{bundle.Next} #{sumaclienteController.pagination.pageSize}" rendered="#{sumaclienteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{sumaclienteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSumaclienteTitle_idcliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idcliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSumaclienteTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSumaclienteTitle_apellido1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apellido1}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSumaclienteTitle_suma}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.suma}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSumaclienteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
